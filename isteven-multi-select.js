@@ -1,4 +1,4 @@
-/* 
+/*
  * Angular JS Multi Select
  * Creates a dropdown-like button with checkboxes. 
  *
@@ -943,7 +943,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             // helper button icons.. I guess you can use html tag here if you want to. 
             $scope.icon        = {};            
             $scope.icon.selectAll  = '&#10003;';    // a tick icon
-            $scope.icon.selectNone = '&times;';     // x icon
+            $scope.icon.selectNone = '';     // x icon
             $scope.icon.reset      = '&#8630;';     // undo icon            
             // this one is for the selected items
             $scope.icon.tickMark   = '&#10003;';    // a tick icon 
