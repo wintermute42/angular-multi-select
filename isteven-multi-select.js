@@ -281,7 +281,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             // call this function when an item is clicked
             $scope.syncItems = function( item, e, ng_repeat_index ) {                                      
 
-                e.preventDefault();
+                //e.preventDefault();
                 e.stopPropagation();
 
                 // if the directive is globaly disabled, do nothing
@@ -946,7 +946,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
             $scope.icon.selectNone = '';     // x icon
             $scope.icon.reset      = '&#8630;';     // undo icon            
             // this one is for the selected items
-            $scope.icon.tickMark   = '&#10003;';    // a tick icon 
+            $scope.icon.tickMark   = '';    // a tick icon
 
             // configurable button labels                       
             if ( typeof attrs.translation !== 'undefined' ) {
@@ -1084,16 +1084,13 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                         'ng-class="{selected: item[ tickProperty ], horizontal: orientationH, vertical: orientationV, multiSelectGroup:item[ groupProperty ], disabled:itemIsDisabled( item )}"'+
                         'ng-click="syncItems( item, $event, $index );" '+
                         'ng-mouseleave="removeFocusStyle( tabIndex );"> '+
+                        '<input type="checkbox" ng-checked="item[ tickProperty ]" ng-click="syncItems( item, $event, $index );"/>'+
                         // this is the spacing for grouped items
-                        '<div class="acol" ng-if="item[ spacingProperty ] > 0" ng-repeat="i in numberToArray( item[ spacingProperty ] ) track by $index">'+                        
-                    '</div>  '+        
+                        '<div class="acol" ng-if="item[ spacingProperty ] > 0" ng-repeat="i in numberToArray( item[ spacingProperty ] ) track by $index">'+
+                    '</div>  '+
                     '<div class="acol">'+
-                        '<label>'+                                
+                        '<label>'+
                             // input, so that it can accept focus on keyboard click
-                            '<input class="checkbox focusable" type="checkbox" '+
-                                'ng-disabled="itemIsDisabled( item )" '+
-                                'ng-checked="item[ tickProperty ]" '+
-                                'ng-click="syncItems( item, $event, $index )" />'+
                             // item label using ng-bind-hteml
                             '<span '+
                                 'ng-class="{disabled:itemIsDisabled( item )}" '+
@@ -1101,8 +1098,6 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                             '</span>'+
                         '</label>'+
                     '</div>'+
-                    // the tick/check mark
-                    '<span class="tickMark" ng-if="item[ groupProperty ] !== true && item[ tickProperty ] === true" ng-bind-html="icon.tickMark"></span>'+
                 '</div>'+
             '</div>'+
         '</div>'+
