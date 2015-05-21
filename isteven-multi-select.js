@@ -360,6 +360,8 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                                 }                                                                                    
 
                                 if ( allTicked === true ) {
+                                    //all items will be set to false, so we need to also set the group marker to false
+                                    $scope.filteredModel[ index ][ $scope.tickProperty ] = false;
                                     for ( j = startIndex; j <= endIndex ; j++ ) {
                                         if ( typeof $scope.filteredModel[ j ][ attrs.groupProperty ] === 'undefined' ) {
                                             if ( typeof attrs.disableProperty === 'undefined' ) {
@@ -375,14 +377,16 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                                                 $scope.inputModel[ inputModelIndex ][ $scope.tickProperty ] = false;
                                             }
                                         }
-                                    }                                
+                                    }
                                 }
 
                                 else {
+                                    //all items will be set to true, so we need to also set the group marker to true
+                                    $scope.filteredModel[ index ][ $scope.tickProperty ] = true;
                                     for ( j = startIndex; j <= endIndex ; j++ ) {
                                         if ( typeof $scope.filteredModel[ j ][ attrs.groupProperty ] === 'undefined' ) {
                                             if ( typeof attrs.disableProperty === 'undefined' ) {
-                                                $scope.filteredModel[ j ][ $scope.tickProperty ] = true;                                                
+                                                $scope.filteredModel[ j ][ $scope.tickProperty ] = true;
                                                 // we refresh input model as well
                                                 inputModelIndex = $scope.filteredModel[ j ][ $scope.indexProperty ];
                                                 $scope.inputModel[ inputModelIndex ][ $scope.tickProperty ] = true;
