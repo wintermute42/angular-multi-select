@@ -735,9 +735,7 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                     case 'NONE':
                         angular.forEach( $scope.filteredModel, function( value, key ) {
                             if ( typeof value !== 'undefined' && value[ attrs.disableProperty ] !== true ) {                        
-                                if ( typeof value[ attrs.groupProperty ] === 'undefined' ) {                                
                                     value[ $scope.tickProperty ] = false;
-                                }
                             }
                         });               
                         $scope.refreshOutputModel();                                    
@@ -745,8 +743,8 @@ angular.module( 'isteven-multi-select', ['ng'] ).directive( 'istevenMultiSelect'
                         $scope.onSelectNone();                        
                         break;
                     case 'RESET':            
-                        angular.forEach( $scope.filteredModel, function( value, key ) {                            
-                            if ( typeof value[ attrs.groupProperty ] === 'undefined' && typeof value !== 'undefined' && value[ attrs.disableProperty ] !== true ) {                        
+                        angular.forEach( $scope.filteredModel, function( value, key ) {
+                            if ( typeof value[ attrs.groupProperty ] === 'undefined' && typeof value !== 'undefined' && value[ attrs.disableProperty ] !== true ) {
                                 var temp = value[ $scope.indexProperty ];                                
                                 value[ $scope.tickProperty ] = $scope.backUp[ temp ][ $scope.tickProperty ];
                             }
